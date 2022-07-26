@@ -8,13 +8,19 @@
 
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import Navigation from './src/Navigation';
+import Navigation from './src/navigation';
+import {Provider} from 'react-redux';
+import configureStore from './src/store';
+
+const store = configureStore();
 
 const App = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <Navigation />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={{flex: 1, backgroundColor: 'red'}}>
+        <Navigation />
+      </SafeAreaView>
+    </Provider>
   );
 };
 
