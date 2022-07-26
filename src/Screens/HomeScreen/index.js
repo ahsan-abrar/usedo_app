@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  RefreshControl,
 } from 'react-native';
 import Routes from '../../navigation/Routes';
 import styles from './styles';
@@ -33,21 +34,36 @@ export default function HomeScreen(props) {
     );
   };
 
+  // handle pull to refresh
+  const handlePullRefresh = () => {
+    setIsLoading(true);
+    handleGetList();
+  };
+
+  // handle bottom Infinite Scroll
+  const handleInfiniteScroll = () => {
+    alert('SD');
+  };
+
   return (
     <View style={styles.container}>
-      {isLoading && <ActivityIndicator />}
+      <View style={styles.space} />
+      {isLoading && <ActivityIndicator color="#000" size="large" />}
 
       {!isLoading && (
         <FlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={isLoading}
+              onRefresh={handlePullRefresh}
+            />
+          }
           keyExtractor={(item, index) => `${item.title}_list_${index}`}
           data={listData}
           renderItem={({item, index}) => {
             return <ListItem data={item} />;
           }}
-          onEndReached={() => {
-            alert('Sd');
-          }}
-          ListEmptyComponent={<Text>No data found</Text>}
+          onEndReached={handleInfiniteScroll}
         />
       )}
     </View>

@@ -33,7 +33,10 @@ export default function ListItem({data}) {
           uri: dummyImage,
         }}
       />
-      <Text style={styles.text}>{data?.title}</Text>
+      <View style={styles.contentWrap}>
+        <Text style={[styles.text, styles.mb]}>{data?.title}</Text>
+        <Text style={styles.text}>{data?.desc}</Text>
+      </View>
     </TouchableOpacity>
   );
 }

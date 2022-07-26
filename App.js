@@ -17,7 +17,7 @@ const store = configureStore();
 const App = () => {
   return (
     <Provider store={store}>
-      <SafeAreaView style={{flex: 1, backgroundColor: 'red'}}>
+      <SafeAreaView style={{flex: 1}}>
         <Navigation />
       </SafeAreaView>
     </Provider>

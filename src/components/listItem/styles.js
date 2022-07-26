@@ -3,10 +3,8 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   text: {
     color: '#000',
-    flex: 1,
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 6,
   },
   img: {
     width: 110,
@@ -31,5 +29,12 @@ export default StyleSheet.create({
     shadowRadius: 2.22,
 
     elevation: 3,
+  },
+  contentWrap: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  mb: {
+    marginBottom: 10,
   },
 });

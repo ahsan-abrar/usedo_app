@@ -1,4 +1,4 @@
-const BASE_URL = 'https://jsonplaceholder.typicode.com/posts';
+const BASE_URL = 'http://192.168.0.102:5000/api/v1/list';
 const END_POINTS = '';
 
 export const fetchData = async action => {

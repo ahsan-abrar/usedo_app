@@ -8,10 +8,11 @@ function* getApiData(action) {
   const {payload, responseCallback} = action;
   try {
     const data = yield call(() => fetchData(payload));
-    if (responseCallback) responseCallback(true, null);
 
     // call success action
-    yield put(getDataSuccess(data));
+
+    yield put(getDataSuccess(data.data));
+    if (responseCallback) responseCallback(true, null);
   } catch (e) {
     if (responseCallback) responseCallback(null, true);
   }
