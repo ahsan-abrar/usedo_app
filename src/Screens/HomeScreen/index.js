@@ -69,6 +69,7 @@ export default function HomeScreen(props) {
 
       {!isLoading && (
         <FlatList
+          showsVerticalScrollIndicator={false}
           initialNumToRender={8}
           refreshControl={
             <RefreshControl

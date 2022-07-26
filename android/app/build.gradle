@@ -258,6 +258,10 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
+// todo custom add start
+    implementation project(':react-native-splash-screen')
+// todo custom add end
+
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

@@ -12,7 +12,7 @@ function* getApiData(action) {
 
     // call success action
 
-    yield put(getDataSuccess(data.data));
+    yield put(getDataSuccess(data?.data));
 
     if (responseCallback) responseCallback(data, null);
   } catch (e) {

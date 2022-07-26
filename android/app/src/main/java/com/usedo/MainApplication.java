@@ -1,5 +1,6 @@
 package com.usedo;
 
+
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
@@ -12,6 +13,10 @@ import com.facebook.soloader.SoLoader;
 import com.usedo.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
+
+// todo custom add 
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
