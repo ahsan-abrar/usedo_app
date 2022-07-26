@@ -1,10 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import _ from 'lodash';
-import {ActivityIndicator, FlatList, View, RefreshControl} from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  View,
+  RefreshControl,
+  Text,
+} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {getDataRequest} from '../../actions/GeneralActions';
+import {getDataRequest, loadMoreRequest} from '../../actions/GeneralActions';
 import ListItem from '../../components/listItem';
 import styles from './styles';
+
+const ITEM_LIMIT = 8;
+const ITEM_SKIP = 0;
 
 export default function HomeScreen(props) {
   const dispatch = useDispatch();
@@ -13,8 +22,7 @@ export default function HomeScreen(props) {
   // states
   const [isLoading, setIsLoading] = useState(true);
   const [isbottomLoading, setIsbottomLoading] = useState(true);
-  const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(8);
+  const [skip, setSkip] = useState(ITEM_SKIP);
 
   useEffect(() => {
     handleGetList();
@@ -22,9 +30,11 @@ export default function HomeScreen(props) {
 
   // get data
   const handleGetList = () => {
+    setSkip(ITEM_SKIP);
+
     const payload = {
-      skip: skip,
-      limit: limit,
+      skip: ITEM_SKIP,
+      limit: ITEM_LIMIT,
     };
     dispatch(
       getDataRequest(payload, () => {
@@ -44,27 +54,28 @@ export default function HomeScreen(props) {
     setIsbottomLoading(true);
 
     let tempSkip = skip + 8;
-    let tempLimit = limit + 8;
 
     const payload = {
       skip: tempSkip,
-      limit: tempLimit,
+      limit: ITEM_LIMIT,
     };
     dispatch(
-      getDataRequest(payload, data => {
+      loadMoreRequest(payload, data => {
         setIsbottomLoading(false);
 
         if (!_.isEmpty(data?.data)) {
-          setLimit(tempLimit + 8);
-          setSkip(tempSkip + 8);
+          setSkip(tempSkip);
         }
       }),
     );
   };
+  const calculatePageNo = skip / ITEM_LIMIT + 1;
 
   return (
     <View style={styles.container}>
       <View style={styles.space} />
+
+      <Text style={{color: 'red'}}>Page:{calculatePageNo}</Text>
       {isLoading && <ActivityIndicator color="#000" size="large" />}
 
       {!isLoading && (
