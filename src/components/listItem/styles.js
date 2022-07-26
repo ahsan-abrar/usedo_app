@@ -6,6 +6,11 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  desc: {
+    color: '#000',
+    fontSize: 12,
+    lineHeight: 17,
+  },
   img: {
     width: 110,
     height: 110,

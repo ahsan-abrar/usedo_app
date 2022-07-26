@@ -1,13 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  Text,
-  TouchableOpacity,
-  View,
-  Image,
-} from 'react-native';
+import {Text, TouchableOpacity, View, Image} from 'react-native';
 import Routes from '../../navigation/Routes';
 
 import styles from './styles';
@@ -35,7 +28,9 @@ export default function ListItem({data}) {
       />
       <View style={styles.contentWrap}>
         <Text style={[styles.text, styles.mb]}>{data?.title}</Text>
-        <Text style={styles.text}>{data?.desc}</Text>
+        <Text style={styles.desc} numberOfLines={2} ellipsizeMode="tail">
+          {data?.desc}
+        </Text>
       </View>
     </TouchableOpacity>
   );

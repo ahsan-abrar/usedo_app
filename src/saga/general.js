@@ -6,14 +6,17 @@ import {fetchData} from '../services/api';
 
 function* getApiData(action) {
   const {payload, responseCallback} = action;
+
   try {
     const data = yield call(() => fetchData(payload));
 
     // call success action
 
     yield put(getDataSuccess(data.data));
-    if (responseCallback) responseCallback(true, null);
+
+    if (responseCallback) responseCallback(data, null);
   } catch (e) {
+    console.log(e);
     if (responseCallback) responseCallback(null, true);
   }
 }

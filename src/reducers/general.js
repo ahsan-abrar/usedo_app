@@ -8,7 +8,7 @@ const generalReducer = (state = initialState, action) => {
     case GET_DATA_SUCCESS:
       return {
         ...state,
-        list: action.data,
+        list: [...state.list, ...action.data],
       };
     default:
       return state;
